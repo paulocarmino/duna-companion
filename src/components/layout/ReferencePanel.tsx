@@ -124,13 +124,15 @@ export function ReferencePanel() {
   );
 }
 
-/** Mobile Reference Panel - bottom sheet */
+/** Mobile Reference Panel - top or bottom sheet based on CommandBar position */
 export function ReferencePanelMobile() {
-  const { cards, isOpen, setIsOpen } = useReference();
+  const { cards, isOpen, setIsOpen, panelPosition } = useReference();
   const { pathname } = useLocation();
   const { orderedCards, reorder } = useCardOrder(pathname, cards);
 
   if (!isOpen || orderedCards.length === 0) return null;
+
+  const isTop = panelPosition === "top";
 
   return (
     <>
@@ -141,9 +143,21 @@ export function ReferencePanelMobile() {
       />
 
       {/* Sheet */}
-      <div className="fixed inset-x-0 bottom-0 z-50 max-h-[75vh] overflow-y-auto rounded-t-2xl glass-strong border-t border-dune-gold/10 animate-slide-in-up xl:hidden">
+      <div
+        className={clsx(
+          "fixed inset-x-0 z-50 max-h-[75vh] overflow-y-auto glass-strong border-dune-gold/10 xl:hidden",
+          isTop
+            ? "top-[90px] rounded-b-2xl border-b animate-slide-down"
+            : "bottom-0 rounded-t-2xl border-t animate-slide-up"
+        )}
+      >
         {/* Handle */}
-        <div className="sticky top-0 z-10 flex items-center justify-between bg-dune-brown/90 backdrop-blur-md px-5 py-3 border-b border-dune-gold/8">
+        <div
+          className={clsx(
+            "sticky z-10 flex items-center bg-dune-brown/90 backdrop-blur-md px-5 py-3",
+            "top-0 border-b border-dune-gold/8"
+          )}
+        >
           <div className="flex items-center gap-2">
             <div className="h-1.5 w-1.5 rotate-45 bg-dune-gold/60" />
             <span className="text-xs font-semibold tracking-[0.1em] text-dune-cream-muted">
@@ -153,12 +167,6 @@ export function ReferencePanelMobile() {
               {orderedCards.length}
             </span>
           </div>
-          <button
-            onClick={() => setIsOpen(false)}
-            className="rounded-lg p-1.5 text-dune-cream-muted/60 transition-colors hover:text-dune-cream"
-          >
-            <X size={16} />
-          </button>
         </div>
 
         {/* Cards */}

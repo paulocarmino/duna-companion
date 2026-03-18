@@ -14,11 +14,15 @@ export interface ReferenceCard {
   mechanicId?: string;
 }
 
+type PanelPosition = "top" | "bottom";
+
 interface ReferenceContextValue {
   cards: ReferenceCard[];
   setCards: (cards: ReferenceCard[]) => void;
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
+  panelPosition: PanelPosition;
+  setPanelPosition: (position: PanelPosition) => void;
 }
 
 const ReferenceContext = createContext<ReferenceContextValue | null>(null);
@@ -26,13 +30,14 @@ const ReferenceContext = createContext<ReferenceContextValue | null>(null);
 export function ReferenceProvider({ children }: { children: ReactNode }) {
   const [cards, setCardsState] = useState<ReferenceCard[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [panelPosition, setPanelPosition] = useState<PanelPosition>("bottom");
 
   const setCards = useCallback((newCards: ReferenceCard[]) => {
     setCardsState(newCards);
   }, []);
 
   return (
-    <ReferenceContext.Provider value={{ cards, setCards, isOpen, setIsOpen }}>
+    <ReferenceContext.Provider value={{ cards, setCards, isOpen, setIsOpen, panelPosition, setPanelPosition }}>
       {children}
     </ReferenceContext.Provider>
   );

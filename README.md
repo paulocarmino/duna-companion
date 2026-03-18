@@ -1,103 +1,103 @@
 # Dune Awakening Companion
 
-Guia completo e interativo para sobreviver e dominar Arrakis no jogo **Dune Awakening**.
+A complete, interactive gameplay companion for **Dune Awakening**.
 
 ![React](https://img.shields.io/badge/React-19-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)
 ![Tailwind](https://img.shields.io/badge/Tailwind-4-blue)
 ![Vite](https://img.shields.io/badge/Vite-7-purple)
 
-## Sobre
+## About
 
-O **Dune Awakening Companion** é uma aplicação web que serve como guia de gameplay para o jogo Dune Awakening. Todo o conteúdo é em **Português Brasileiro** e cobre desde mecânicas básicas de sobrevivência até estratégias avançadas de endgame.
+**Dune Awakening Companion** is a web app that serves as a gameplay guide for Dune Awakening. All in-app content is in **Brazilian Portuguese**, covering everything from basic survival mechanics to advanced endgame strategies.
 
-### Conteúdo disponível
+### Content
 
-- **Guia de Progressão** — Walkthrough completo dividido em Early, Mid e Late game (Level 1–200)
-- **Classes & Builds** — As 5 classes (Swordmaster, Mentat, Bene Gesserit, Trooper, Planetologist) com skill trees e builds recomendados
-- **Combate** — Escudos, Slow Blade, PvP e táticas
-- **Crafting & Recursos** — Estações, receitas e tiers de materiais
-- **Sobrevivência** — Água, calor, sandworms e stillsuits
-- **Base Building** — Construção, Sub-Fief e defesa
-- **Veículos** — Da Sandbike ao Ornithopter (Mk1–Mk6)
-- **Mapa & Locais** — Hagga Basin, Deep Desert e POIs
-- **Lore & Facções** — Atreides, Harkonnen, Fremen, Bene Gesserit
-- **Landsraad & Política** — Guilds e votação semanal
-- **Pro Tips** — Estratégias avançadas e meta
-- **Dicas de Iniciante** — Erros comuns e como evitá-los
+- **Progression Guide** — Full walkthrough split into Early, Mid, and Late game (Level 1–200)
+- **Classes & Builds** — 5 classes (Swordmaster, Mentat, Bene Gesserit, Trooper, Planetologist) with skill trees and recommended builds
+- **Combat** — Shields, Slow Blade, PvP, and tactics
+- **Crafting & Resources** — Stations, recipes, and material tiers
+- **Survival** — Water, heat, sandworms, and stillsuits
+- **Base Building** — Construction, Sub-Fief, and defense
+- **Vehicles** — From Sandbike to Ornithopter (Mk1–Mk6)
+- **Map & Locations** — Hagga Basin, Deep Desert, and POIs
+- **Lore & Factions** — Atreides, Harkonnen, Fremen, Bene Gesserit
+- **Landsraad & Politics** — Guilds and weekly voting
+- **Pro Tips** — Advanced strategies and meta
+- **Beginner Tips** — Common mistakes and how to avoid them
 
-## Arquitetura
+## Architecture
 
-Layout de 3 colunas:
+3-column layout:
 
-| Sidebar | Conteúdo Principal | Painel de Referência |
+| Sidebar | Main Content | Reference Panel |
 |---|---|---|
-| Navegação com todas as seções | Páginas com ProgressionRenderer | "Códex de Arrakis" com ReferenceCards |
+| Navigation across all sections | Pages with ProgressionRenderer | "Codex of Arrakis" with ReferenceCards |
 
 ### Reference Cards
 
-O painel lateral direito exibe cards contextuais de 4 tipos:
+The right-side panel displays contextual cards in 4 types:
 
-- 🟡 **Tip** (gold) — Dicas práticas
-- 🟣 **Lore** (purple) — Contexto do universo Dune
-- 🔵 **Mechanic** (blue) — Explicação de mecânicas do jogo
-- 🟠 **Reference** (orange) — Dados e tabelas de referência
+- **Tip** (gold) — Practical tips
+- **Lore** (purple) — Dune universe context
+- **Mechanic** (blue) — Game mechanic explanations
+- **Reference** (orange) — Data and reference tables
 
-### Responsividade
+### Responsiveness
 
-- **Desktop** — Sidebar fixa + painel de referência lateral
-- **Mobile** — Sidebar como drawer, Command Bar inferior, FAB para referências, SlideOver panel
+- **Desktop** — Fixed sidebar + side reference panel
+- **Mobile** — Sidebar as drawer, bottom Command Bar, FAB for references, SlideOver panel
 
 ## Tech Stack
 
 - **React 19** + **TypeScript 5.9**
-- **Tailwind CSS 4** (via plugin Vite)
+- **Tailwind CSS 4** (via Vite plugin)
 - **Vite 7** (build tool)
-- **React Router 7** (roteamento)
-- **Lucide React** (ícones)
+- **React Router 7** (routing)
+- **Lucide React** (icons)
 
-## Começando
+## Getting Started
 
-### Pré-requisitos
+### Prerequisites
 
 - Node.js 18+
 - pnpm
 
-### Instalação
+### Installation
 
 ```bash
-# Clonar o repositório
+# Clone the repository
 git clone <repo-url>
 cd dune-companion
 
-# Instalar dependências
+# Install dependencies
 pnpm install
 
-# Iniciar servidor de desenvolvimento
+# Start the dev server
 pnpm dev
 ```
 
-### Scripts disponíveis
+### Available Scripts
 
-| Comando | Descrição |
+| Command | Description |
 |---|---|
-| `pnpm dev` | Inicia o servidor de desenvolvimento |
-| `pnpm build` | Build de produção (TypeScript + Vite) |
-| `pnpm preview` | Preview do build de produção |
+| `pnpm dev` | Start the development server |
+| `pnpm build` | Production build (TypeScript + Vite) |
+| `pnpm preview` | Preview the production build |
 
-## Estrutura do Projeto
+## Project Structure
 
 ```
 src/
 ├── components/
-│   ├── content/       # Componentes de conteúdo (ProTipBox, Checklist, etc.)
+│   ├── content/       # Content components (ProTipBox, Checklist, etc.)
 │   ├── layout/        # Layout (MainContent, ReferencePanel, Footer, etc.)
-│   ├── navigation/    # Navegação (Sidebar, CommandBar, ReferenceFab)
-│   └── ui/            # Componentes base (Card, Badge, Accordion, etc.)
+│   ├── navigation/    # Navigation (Sidebar, CommandBar, ReferenceFab)
+│   └── ui/            # Base components (Card, Badge, Accordion, etc.)
 ├── contexts/          # React Contexts (Sidebar, SlideOver, Reference)
-├── data/              # Dados estáticos (mechanics, navigation, progression)
+├── data/              # Static data (mechanics, navigation, progression)
 ├── hooks/             # Custom hooks
 ├── layouts/           # Root layout
-├── lib/               # Utilitários
-└── pages/             # Páginas organizadas por seção
+├── lib/               # Utilities
+└── pages/             # Pages organized by section
 ```
